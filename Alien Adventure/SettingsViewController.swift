@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController {
     
     func addTargets() {
         startGameButton.addTarget(self, action: #selector(SettingsViewController.startGame), forControlEvents: .TouchUpInside)
-        showBadgesSwitch.addTarget(self, action: #selector(SettingsViewController.showBadges(_:)), forControlEvents: .TouchUpInside)
+        showBadgesSwitch.addTarget(self, action: #selector(SettingsViewController.showBadges(_:)), forControlEvents: .ValueChanged)
         levelSegmentedControl.addTarget(self, action: #selector(SettingsViewController.switchLevel(_:)), forControlEvents: .ValueChanged)
     }
 
@@ -53,11 +53,7 @@ class SettingsViewController: UIViewController {
     }
     
     func showBadges(switchControl: UISwitch) {
-        if switchControl.on {
-            Settings.Common.ShowBadges = true
-        } else {
-            Settings.Common.ShowBadges = false
-        }
+        Settings.Common.ShowBadges = switchControl.on
     }
     
     func startGame() {

@@ -27,13 +27,15 @@ class SpecialBadge: Badge {
     }
     
     func animator(badgeAnimation: Int) {
-       switch badgeAnimation.hashValue {
-            case BadgeAnimation.Shake.hashValue: shake()
-            case BadgeAnimation.Rotate.hashValue: rotate()
-            case BadgeAnimation.GrowAndShrink.hashValue: growAndShrink()
-            default: break
+        let randomAnimation = BadgeAnimation(rawValue: badgeAnimation)
+        
+        switch randomAnimation! {
+            case .GrowAndShrink: growAndShrink()
+            case .Rotate: rotate()
+            case .Shake: shake()
         }
     }
+
     
     // MARK: Functions for badge animation
     
