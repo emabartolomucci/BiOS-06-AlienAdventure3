@@ -2,8 +2,7 @@
 //  AddBadge.swift
 //  Alien Adventure
 //
-//  Created by Jarrod Parkes on 10/8/15.
-//  Copyright © 2015 Udacity. All rights reserved.
+//  Edited by Emanuele Bartolomucci on 2016/10/15.
 //
 
 extension UDGameSM {

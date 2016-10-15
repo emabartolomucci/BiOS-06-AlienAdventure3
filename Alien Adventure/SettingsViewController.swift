@@ -2,8 +2,7 @@
 //  SettingsViewController.swift
 //  Alien Adventure
 //
-//  Created by Jarrod Parkes on 10/4/15.
-//  Copyright © 2015 Udacity. All rights reserved.
+//  Edited by Emanuele Bartolomucci on 2016/10/15.
 //
 
 import UIKit
@@ -17,7 +16,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var levelSegmentedControl: UISegmentedControl!
     @IBOutlet weak var startGameButton: UIButton!
-    @IBOutlet weak var showBadgesLabel: UILabel!    
+    @IBOutlet weak var showBadgesLabel: UILabel!
     @IBOutlet weak var showBadgesSwitch: UISwitch!
     
     // MARK: Life Cycle
@@ -42,20 +41,29 @@ class SettingsViewController: UIViewController {
     // MARK: Add Targets
     
     func addTargets() {
-        print("adding targets!")
+        startGameButton.addTarget(self, action: #selector(SettingsViewController.startGame), forControlEvents: .TouchUpInside)
+        showBadgesSwitch.addTarget(self, action: #selector(SettingsViewController.showBadges(_:)), forControlEvents: .TouchUpInside)
+        levelSegmentedControl.addTarget(self, action: #selector(SettingsViewController.switchLevel(_:)), forControlEvents: .ValueChanged)
     }
-    
+
     // MARK: Implementing Actions
     
     func switchLevel(segmentControl: UISegmentedControl) {
-        print("level control has changed!")
+        Settings.Common.Level = segmentControl.selectedSegmentIndex
     }
     
     func showBadges(switchControl: UISwitch) {
-        print("show badges switch has changed!")
+        if switchControl.on {
+            Settings.Common.ShowBadges = true
+        } else {
+            Settings.Common.ShowBadges = false
+        }
     }
     
     func startGame() {
-        print("start button has been pressed!")
+        let alienAdventureViewController = self.storyboard!.instantiateViewControllerWithIdentifier("AlienAdventureViewController") as! AlienAdventureViewController
+        
+        self.presentViewController(alienAdventureViewController, animated: true, completion: nil)
+        
     }
 }
